@@ -133,7 +133,8 @@ module RecordCache
 
       # Returns the RecordCache (class) instance
       def record_cache
-        @rc_dispatcher
+        return @rc_dispatcher if @rc_dispatcher
+        superclass.record_cache
       end
     end
 

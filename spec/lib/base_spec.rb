@@ -11,4 +11,10 @@ describe RecordCache::Base do
     RecordCache::Base.status.should == RecordCache::DISABLED
   end
 
+  it "should use the record_cache from parent class when caching subclasses" do
+    dog = Dog.create!(:name => "Puppy")
+
+    lambda { Dog.find 1 }.should hit_cache(Animal).on(:id).times(1)
+  end
+
 end

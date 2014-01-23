@@ -12,9 +12,9 @@ RSpec::Matchers.define :log do |severity, expected|
     logger.instance_variable_set(:@found_messages, [])
     logger.instance_variable_set(:@found, false)
     logger.class.send(:alias_method, "orig_#{severity}", severity)
-    logger.class.send(:define_method, severity) do |progname = nil, &block|
+    logger.class.send(:define_method, severity) do |&block|
       unless @found
-        actual= progname.is_a?(String) ? progname : block ? block.call : nil
+        actual=block.call
         unless actual.blank?
           @found = actual.is_a?(String) && expected.is_a?(Regexp) ? actual =~ expected : actual == expected
           @found_messages << actual

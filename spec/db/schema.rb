@@ -45,4 +45,9 @@ ActiveRecord::Schema.define :version => 0 do
     t.integer :store_id
   end
 
+  create_table :animals, :force => true do |t|
+    t.integer :id
+    t.string  :name
+    t.string  :species # STI inheritance column
+  end
 end
