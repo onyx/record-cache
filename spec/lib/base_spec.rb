@@ -17,4 +17,9 @@ describe RecordCache::Base do
     lambda { Dog.find 1 }.should hit_cache(Animal).on(:id).times(1)
   end
 
+  it "should not raise an exception if class or ancestors does not have record_cache" do
+    object = Uncacheable.create!
+    lambda { Uncacheable.find 1 }.should_not raise_error
+  end
+
 end

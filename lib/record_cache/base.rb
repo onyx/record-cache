@@ -134,7 +134,7 @@ module RecordCache
       # Returns the RecordCache (class) instance
       def record_cache
         return @rc_dispatcher if @rc_dispatcher
-        superclass.record_cache
+        superclass.record_cache if superclass.respond_to? :record_cache
       end
     end
 

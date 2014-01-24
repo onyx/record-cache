@@ -50,4 +50,8 @@ ActiveRecord::Schema.define :version => 0 do
     t.string  :name
     t.string  :species # STI inheritance column
   end
+
+  create_table :uncacheables, :force => true do |t|
+    t.integer :id
+  end
 end
